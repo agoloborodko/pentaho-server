@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  pentaho_server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6589:8080"
+    volumes:
+      - pentaho_data:/home/pentaho/pentaho-server
+volumes:
+  pentaho_data:
+    driver_opts:
+      type: none
+      device: /home/user1/bi/pentaho_biserver/pentaho-server-ce-8.3/pentaho-server-data
+      o: bind
