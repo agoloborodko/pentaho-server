@@ -11,5 +11,9 @@ RUN curl -o /home/pentaho/pentaho-server/tomcat/lib/vertica-jdbc-9.3.1-0.jar htt
 
 EXPOSE 8080
 
+# Set timezone
+RUN apt-get update && apt-get install tzdata \
+    && /bin/bash -c "ln -snf /usr/share/zoneinfo/Europe/Moscow /etc/localtime && dpkg-reconfigure -f noninteractive tzdata"
+
 #Run start-pentaho.sh to start Pentaho Server
 CMD ["/home/pentaho/pentaho-server/start-pentaho.sh"]
