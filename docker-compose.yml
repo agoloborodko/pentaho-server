@@ -7,11 +7,18 @@ services:
     ports:
       - "6589:8080"
     volumes:
-      - pentaho_data:/home/pentaho/pentaho-server
+      - pentaho_server_data:/home/pentaho/pentaho-server
+      - pentaho_ext_data:/home/pentaho/pentaho-external-data
     container_name: pentaho_server
 volumes:
-  pentaho_data:
+  pentaho_server_data:
     driver_opts:
       type: none
-      device: /home/user1/bi/pentaho_biserver/pentaho-server-ce-8.3/pentaho-server-data
+      device: /home/pentaho_server/pentaho_server_data
       o: bind
+  pentaho_ext_data:
+    driver_opts:
+      type: none
+      device: /share/share/etl
+      o: bind
+

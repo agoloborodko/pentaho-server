@@ -14,9 +14,14 @@ RUN apt-get update && apt-get install tzdata \
     && /bin/bash -c "ln -snf /usr/share/zoneinfo/Europe/Moscow /etc/localtime && dpkg-reconfigure -f noninteractive tzdata"
 
 # Allow other users to pentaho-server folder to enable external access to the volume
-RUN chmod 777 /home/pentaho/pentaho-server
+RUN chmod -R 777 /home/pentaho/pentaho-server
 
 EXPOSE 8080
+
+# Add a new user "john" with user id 8877
+# RUN useradd -u 1002 a.goloborodko
+# Change to non-root privilege
+# USER a.goloborodko
 
 #Run start-pentaho.sh to start Pentaho Server
 CMD ["/home/pentaho/pentaho-server/start-pentaho.sh"]
